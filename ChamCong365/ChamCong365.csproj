@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>ChamCong365</RootNamespace>
     <AssemblyName>ChamCong365</AssemblyName>
-    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -16,6 +16,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -66,12 +67,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="companyManagerment.xaml.cs">
+      <DependentUpon>companyManagerment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucChildCompanyManager.xaml.cs">
+      <DependentUpon>ucChildCompanyManager.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ucInstallCalendarWork.xaml.cs">
       <DependentUpon>ucInstallCalendarWork.xaml</DependentUpon>
     </Compile>
     <Compile Include="ucSecurityWifi.xaml.cs">
       <DependentUpon>ucSecurityWifi.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ucShiftManager.xaml.cs">
+      <DependentUpon>ucShiftManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucTest.xaml.cs">
+      <DependentUpon>ucTest.xaml</DependentUpon>
+    </Compile>
+    <Page Include="companyManagerment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -88,11 +105,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ucChildCompanyManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ucInstallCalendarWork.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ucSecurityWifi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ucShiftManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ucTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -166,6 +195,12 @@
     <Resource Include="Resource\image\Vector.png" />
     <Resource Include="Resource\image\Wifi.png" />
     <Resource Include="Resource\image\Word.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\image\llll.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\image\CompanyLogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets')" />

@@ -24,6 +24,15 @@ namespace ChamCong365
         {
             InitializeComponent();
         }
+        private void buttonCompanyManager_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            companyManagerment uc = new companyManagerment();
+            dopFormBody.Children.Clear();
+            object Content = uc.Content;
+            uc.Content = null;
+            dopFormBody.Children.Add(Content as UIElement);
+        }
+
         private void wapbuttonSecurityWifi_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             ucSecurityWifi uc = new ucSecurityWifi();
