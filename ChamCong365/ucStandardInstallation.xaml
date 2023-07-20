@@ -1,0 +1,299 @@
+﻿<UserControl x:Class="ChamCong365.ucStandardInstallation"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ChamCong365"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="433" d:DesignWidth="1200">
+    <Grid>
+        <StackPanel
+             Background="White"
+            x:Name="dobStandardInstallation">
+            <Border 
+                Margin="20 10 20 0"
+                CornerRadius="5">
+                <StackPanel>
+                    <WrapPanel Width="1140" Height="43">
+                        <Border>
+                            <TextBlock
+                            Style="{StaticResource ListFunctionChamCong}"
+                            Text="Công chuẩn tháng "/>
+                        </Border>
+                        <Border>
+                            <TextBlock 
+                            Width="56"
+                            Style="{StaticResource ListFunctionChamCong}"
+                            Text="{Binding}"/>
+                        </Border>
+                    </WrapPanel>
+                    <Rectangle Style="{StaticResource Rectangle}"/>
+                    <WrapPanel
+                        Margin="0 5 0 0"
+                        HorizontalAlignment="Right">
+                        <!--Select year-->
+                    
+                        <Border
+                            MouseLeftButtonUp="bodYear_MouseLeftButtonUp"
+                            Style="{StaticResource BorderSelected}"
+                            Width="190">
+                            <DockPanel>
+                                <TextBlock 
+                                    x:Name="txbSelectYear"/>
+                                <Image 
+                            HorizontalAlignment="Right"
+                            Source="./Resource/image/searchmore1.png"/>
+                            </DockPanel>
+                        </Border>
+                        <!--Chọn Tháng-->
+                      
+                        <Border
+                            MouseLeftButtonUp="bodMonth_MouseLeftButtonUp"
+                            Margin="10 0 0 0"
+                            Style="{StaticResource BorderSelected}">   
+                            <DockPanel>
+                                <TextBlock 
+                                x:Name="txbSelectMonth"/>
+                                <Image 
+                            HorizontalAlignment="Right"
+                            Source="./Resource/image/searchmore1.png"/>
+                            </DockPanel>
+                        </Border>
+                    </WrapPanel>
+                    <!--Mô Tả-->
+                    <DockPanel>
+                        <Border 
+                        Margin="0 20 0 0"
+                        HorizontalAlignment="Left"
+                        Width="550"
+                        Height="266"
+                        CornerRadius='10'
+                        BorderThickness="1"
+                        BorderBrush="#C4C4C4">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="0" BlurRadius="1" Opacity="2"></DropShadowEffect>
+                            </Border.Effect>
+                            <StackPanel>
+                                <WrapPanel 
+                                Margin="20 10 0 0"
+                                Height="24">
+                                    <Image Source="./Resource/image/Notepen.png"/>
+                                    <TextBlock 
+                                    FontWeight="DemiBold"
+                                    Text="Mô tả"
+                                    Style="{StaticResource TextBlockLable}"/>
+                                </WrapPanel>
+                                <StackPanel 
+                                Margin="10 20 0 20"
+                                Width="500"
+                                Height="66">
+                                    <TextBlock 
+                                    Text="Cài đặt số ngày công tiêu chuẩn để tính lương cho toàn bộ nhân viên của công ty trong tháng đó."
+                                    Style="{StaticResource TextBlockLable}"/>
+                                    <TextBlock 
+                                    Text="Định dạng nhập là số nguyên dương hoặc số thập phân."
+                                    Style="{StaticResource TextBlockLable}"/>
+                                </StackPanel>
+                                <Border 
+                                CornerRadius="5"
+                                BorderThickness="1"
+                                BorderBrush="#9F9F9F"
+                                Margin="0 0 0 20"
+                                Width="500"
+                                Height="42">
+                                    <TextBox
+                                        x:Name="txbNumberStandard"
+                                        materialDesign:HintAssist.Foreground="#ACACAC"
+                                        materialDesign:HintAssist.Hint="Nhập số ngày công"
+                                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                </Border>
+                                <Border 
+                                    x:Name="bodSaveStandanrd"
+                                    MouseUp="bodSaveStandanrd_MouseUp"
+                                Style="{StaticResource BorderButon}"
+                                Width="500"
+                                Height="44">
+                                    <TextBlock 
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Text="Lưu công chuẩn"/>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+                        <Border 
+                            x:Name="bodUpdateStandard"
+                            Visibility="Collapsed"
+                        Margin="0 20 0 0"
+                        HorizontalAlignment="Right"
+                        Width="550"
+                        Height="266"
+                        CornerRadius='10'
+                        BorderThickness="1"
+                        BorderBrush="#C4C4C4">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="0" BlurRadius="1" Opacity="2"></DropShadowEffect>
+                            </Border.Effect>
+                            <StackPanel>
+                                <WrapPanel 
+                                Margin="20 10 0 0"
+                                Height="24">
+                                    <Image Source="./Resource/image/Notepen.png"/>
+                                    <TextBlock 
+                                    FontWeight="DemiBold"
+                                    Text="Mô tả"
+                                    Style="{StaticResource TextBlockLable}"/>
+                                </WrapPanel>
+                                <StackPanel 
+                                Margin="0 20 0 20"
+                                Width="500"
+                                Height="66">
+                                    <TextBlock   
+                                    Text="Cài đặt số ngày công tiêu chuẩn để tính lương cho toàn bộ nhân viên của công ty trong tháng đó."
+                                    Style="{StaticResource TextBlockLable}"/>
+                                    <TextBlock 
+                                    Text="Định dạng nhập là số nguyên dương hoặc số thập phân."
+                                    Style="{StaticResource TextBlockLable}"/>
+                                </StackPanel>
+                                <Border 
+                                    Width="500"
+                                    Height="42"
+                                    BorderBrush="#9F9F9F"
+                                    CornerRadius="5"
+                                    BorderThickness="1">
+                                    <DockPanel>
+                                        <Border>
+                                            <TextBox
+                                                Text="{Binding txbNumberStandard}"
+                                                x:Name="txbUpdateNumberStandard"
+                                                Width="450"
+                                              materialDesign:HintAssist.Foreground="#ACACAC"
+                                              materialDesign:HintAssist.Hint="Nhập số ngày công"
+                                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                        </Border>
+                                    <StackPanel
+                                       Margin="0 0 15 0"
+                                       Height="20"
+                                       HorizontalAlignment="Right">
+                                        <Border
+                                            Margin="0 0 0 5"
+                                            HorizontalAlignment="Center"
+                                            Width="9"
+                                            Height="6">
+                                            <Image Source="./Resource/image/iconPluss.png"/>
+                                        </Border>
+                                        <Border 
+                                            Width="9"
+                                            Height="6">
+                                            <Image Source="./Resource/image/iconSubtraction.png"/>
+                                        </Border>
+                                    </StackPanel>
+                                </DockPanel>
+                                </Border>
+                                <Border 
+                                    Margin="0 20 0 0"
+                                    Style="{StaticResource BorderButon}"
+                                    Width="500"
+                                    Height="44">
+                                    <TextBlock 
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Text="Cập Nhật công chuẩn"/>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+                    </DockPanel>
+                    
+                    
+                    
+                </StackPanel>
+            </Border>
+            <!--Boder Lisview Visibility Collapsed Year-->
+            <Border 
+                Visibility="Collapsed"
+                Style="{StaticResource BorderListViewSeleted}"
+                x:Name="bodYear"
+                Margin="750 -285 0 0"  
+                Grid.RowSpan="2" Grid.Row="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="34"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <!---->
+                    <TextBox
+                        TextChanged="txtSearchYear_TextChanged"
+                        Style="{StaticResource TextBoxListViewSeleted}"
+                        x:Name="txtSearchYear"  
+                      />
+                    <!---->
+                    <ListView 
+                        SelectionChanged="lsvListYear_SelectionChanged"
+                        Grid.Row="1"
+                        x:Name="lsvListYear"
+                        Style="{StaticResource ListViewSelected}"
+                       />
+                </Grid>
+            </Border>
+            <!--Boder Lisview Visibility Collapsed Month-->
+            <Border 
+                Visibility="Collapsed"
+                    Style="{StaticResource BorderListViewSeleted}"
+                    x:Name="bodMonth"
+                    Margin="950,-285,0,0" 
+                    Grid.RowSpan="2" Grid.Row="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="34"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <!---->
+                    <TextBox
+                        TextChanged="txtSearchMonth_TextChanged"
+                        Style="{StaticResource TextBoxListViewSeleted}"
+                        x:Name="txtSearchMonth" 
+                        
+                         Grid.Row="0"/>
+                    <!---->
+                    <ListView 
+                        SelectionChanged="lsvListMonth_SelectionChanged"
+                        x:Name="lsvListMonth" 
+                        Grid.Row="1"
+                       Style="{StaticResource ListViewSelected}"/>
+                </Grid>
+            </Border>
+            <!--Messagebox-->
+            <Border 
+                Visibility="Collapsed"
+                x:Name="bodMessageBox"
+                CornerRadius="5"
+                BorderThickness="2"
+                BorderBrush="#C4C4C4"
+                Background="White"
+                Margin="0 -350 0 0"
+                Height="116"
+                Width="287">
+                <StackPanel>
+                    <TextBlock 
+                        Margin="0 20 0 0"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Text="Bạn đã lưu công chuẩn thành công"
+                        Style="{StaticResource TextBlockLable}"/>
+                    <Border 
+                        x:Name="bodOkMessageBox"
+                        MouseUp="bodOkMessageBox_MouseUp"
+                        Margin="0 20 0 0"
+                        Width="64"
+                            Height="34"
+                            Style="{StaticResource BorderButon}">
+                        <TextBlock 
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Text="OK"/>
+                    </Border>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </Grid>
+</UserControl>

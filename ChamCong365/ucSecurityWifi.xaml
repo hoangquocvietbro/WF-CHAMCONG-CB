@@ -1,0 +1,905 @@
+﻿<UserControl x:Class="ChamCong365.ucSecurityWifi"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ChamCong365"
+             mc:Ignorable="d" 
+             d:DesignHeight="856" d:DesignWidth="1200">
+    <Grid 
+        Margin="20 0 20 20"
+        Background="White">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="93"/>
+                <RowDefinition Height="856*"/>
+            </Grid.RowDefinitions>
+            <DockPanel 
+                    Grid.Row="0"
+                    VerticalAlignment="Bottom"
+                    Height="43">
+                <!--WIFI-->
+                <Border 
+                    MouseLeftButtonUp="Border_MouseLeftButtonUp_Wifi"
+                    Width="75"
+                    Height="43"
+                    BorderThickness="0 0 0 2"
+                    TextBlock.FontSize="20"
+                    TextBlock.LineHeight="23.44"
+                    TextBlock.Foreground="#474747"
+                    TextBlock.FontWeight="DemiBold">
+                    <TextBlock
+                        x:Name="bodTextWifi"
+                        Text="Wifi"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Center" >
+                    </TextBlock>
+                </Border>
+                <!--Vị Trí-->
+                <Border 
+                        Width="82"
+                        Height="43"
+                        TextBlock.FontSize="20"
+                        TextBlock.LineHeight="23.44"
+                        TextBlock.Foreground="#474747"
+                        TextBlock.FontWeight="DemiBold">
+                    <TextBlock 
+                            Text="Vị trí"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Center" >
+                    </TextBlock>
+                </Border>
+                <!--Gioi Hạn IP Chấm Công Nhân viên-->
+                <Border 
+                    
+                        MouseLeftButtonUp="Border_MouseLeftButtonUp_Ip"
+                        Width="946"
+                        Height="43"
+                        TextBlock.FontSize="20"
+                        TextBlock.LineHeight="23.44"
+                        TextBlock.Foreground="#474747"
+                        TextBlock.FontWeight="DemiBold">
+                    <TextBlock 
+                        x:Name="bodTextIP"
+                            Text="Giới hạn IP chấm công nhân viên"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Left" >
+                    </TextBlock>
+                </Border>
+            </DockPanel>
+            <Rectangle 
+                    VerticalAlignment="Bottom" 
+                    Height="1" StrokeDashArray="5" 
+                    Stroke="#474747" StrokeThickness="1" 
+                    />
+            <Grid 
+                Grid.Row="1"
+                    Margin="0 10 0 25"
+                    Height="43">
+                <!--Danh Sách Wifi-->
+                <Border 
+                        x:Name="bodListWifi"
+                        Width="125"
+                        Height="24"
+                        HorizontalAlignment="Left"
+                        TextBlock.FontSize="18"
+                        TextBlock.LineHeight="24.48"
+                        TextBlock.FontWeight="DemiBold"
+                        TextBlock.Foreground="#474747"
+                        Margin="5 0 0 0">
+                    <TextBlock Text="Danh sách Wifi"></TextBlock>
+                </Border>
+                <!--Visibility="Collapsed" Gioi Hạn IP Chấm Công Nhân viên-->
+                <Border 
+                            x:Name="bodListIp"
+                            Width="650"
+                            Height="24"
+                            HorizontalAlignment="Left"
+                            TextBlock.FontSize="18"
+                            TextBlock.LineHeight="24.48"
+                            TextBlock.FontWeight="DemiBold"
+                            TextBlock.Foreground="#474747"
+                            Margin="5 0 0 0"
+                            Visibility="Collapsed">
+                    <TextBlock Text="Danh sách IP mạng cho phép chấm công trên website bằng tài khoản nhân viên"></TextBlock>
+                </Border>
+
+                <!--Thêm mới wifi-->
+                <Border 
+                        x:Name="bodAddWifi"
+                        MouseLeftButtonUp="Border_MouseLeftButtonUp"
+                        HorizontalAlignment="Right"
+                        Width="165" Height="43"
+                        CornerRadius="15 15 15 15"
+                        Background="#42D778"
+                        TextBlock.FontSize="16"
+                        TextBlock.LineHeight="21.76"
+                        TextBlock.FontWeight="DemiBold"
+                        TextBlock.Foreground="White">
+                    <TextBlock 
+                             Text="+ Thêm mới Wifi"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center">
+                    </TextBlock>
+                </Border>
+                <!--Visibility="Collapsed" Thêm mới địa chỉ Ip-->
+                <Border 
+                    MouseLeftButtonUp="borAddIp_MouseLeftButtonUp"
+                    x:Name="borAddIp"
+                    Visibility="Collapsed"
+                    HorizontalAlignment="Right"
+                    Width="173" Height="43"
+                    CornerRadius="15 15 15 15"
+                    Background="#42D778"
+                    TextBlock.FontSize="16"
+                    TextBlock.LineHeight="21.76"
+                    TextBlock.FontWeight="DemiBold"
+                    TextBlock.Foreground="White">
+                    <TextBlock 
+                             Text="+ Thêm mới địa chỉ IP"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center">
+                    </TextBlock>
+                </Border>
+
+
+            </Grid>
+
+            <ListView
+                x:Name="lsvLoadWifi"
+                Grid.Row="2"
+                Height="auto">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <Grid Grid.Row="0">
+                                <DockPanel 
+                                    Margin="0 0 0 50"
+                                    Width="1140" 
+                                    Height="54">
+                                    <Grid 
+                                        Width="50">
+                                        <Border 
+                                            Width="42" Height="42"
+                                            Margin="0 0 10 0 ">
+                                            <Image 
+                                                Source="./Resource/Image/Wifi.png"
+                                                Margin="0 0 10 10">
+                                            </Image>
+                                        </Border>
+                                    </Grid>
+                                    <Grid 
+                                        Width="980" 
+                                        Height="54">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <WrapPanel 
+                                            TextBlock.FontSize="18"
+                                            TextBlock.LineHeight="24.48"
+                                            TextBlock.Foreground="#4C5BD4"
+                                            Grid.Row="0">
+                                            <TextBlock 
+                                                Text="Tên Wifi: ">
+                                            </TextBlock>
+                                            <TextBlock 
+                                                Text="{Binding NameWifi}">
+                                            </TextBlock>
+                                        </WrapPanel>
+                                        <WrapPanel 
+                                            TextBlock.FontSize="16"
+                                            TextBlock.LineHeight="21.48"
+                                            Grid.Row="1">
+                                            <TextBlock 
+                                                Text="Địa chỉ Mac của Wifi: ">
+                                            </TextBlock>
+                                            <TextBlock 
+                                                Text="{Binding AddressWifi}">
+                                            </TextBlock>
+                                        </WrapPanel>
+                                    </Grid>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <!--Click-->
+                                        <Border 
+                                            MouseLeftButtonUp="Border_MouseLeftButtonUp_UpdateVisibility"
+                                            Grid.Column="0"
+                                            Width="24" 
+                                            Height="24">
+                                            <Image 
+                                                Source="./Resource/Image/But.png">
+                                            </Image>
+                                        </Border>
+                                        <Border 
+                                            Width="2"
+                                            Height="28"
+                                            Grid.Column="1">
+                                            <Image 
+                                                Source="./Resource/Image/Vector.png">
+                                            </Image>
+                                        </Border>
+                                        <Border 
+                                            MouseLeftButtonUp="Border_MouseLeftButtonUp_DeleteVisibility"
+                                            Grid.Column="2"
+                                            Width="24" 
+                                            Height="24">
+                                            <Image 
+                                            Source="./Resource/Image/iconDelete1.png">
+                                            </Image>
+                                        </Border>
+                                    </Grid>
+                                </DockPanel>
+                                <WrapPanel 
+                                    TextBlock.FontSize="16"
+                                    TextBlock.LineHeight="21.76"
+                                    TextBlock.Foreground="#474747"
+                                    Margin="0 0 0 15"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Bottom"
+                                    Width="240" Height="22">
+                                    <TextBlock 
+                                        Text="Cập nhật: ">
+                                    </TextBlock>
+                                    <TextBlock 
+                                        Text="{Binding UpdateWifi}">
+                                    </TextBlock>
+                                </WrapPanel>
+                                <Rectangle 
+                                    VerticalAlignment="Bottom" 
+                                    Height="1" StrokeDashArray="0.5 1 0.5 1" 
+                                    Stroke="Black" StrokeThickness="10" 
+                                    RadiusX="10" RadiusY="10"/>
+                            </Grid>
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!--Visibility="Collapsed"-->
+            <ListView 
+                Visibility="Collapsed"
+                x:Name="lsvLoaIP"
+                Grid.Row="2"
+                Height="auto">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <Grid Grid.Row="0">
+                                <DockPanel 
+                                    Margin="0 0 0 50"
+                                    Width="1140" 
+                                    Height="54">
+                                    <Grid 
+                                        Width="50">
+                                        <Border 
+                                            Width="42" Height="42"
+                                            Margin="0 0 10 0 ">
+                                            <Image 
+                                                Source="./Resource/Image/Wifi.png"
+                                                Margin="0 0 10 10">
+                                            </Image>
+                                        </Border>
+                                    </Grid>
+                                    <Grid 
+                                        Width="980" 
+                                        Height="54">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <WrapPanel 
+                                            TextBlock.FontSize="18"
+                                            TextBlock.LineHeight="24.48"
+                                            TextBlock.Foreground="#4C5BD4"
+                                            Grid.Row="0">
+                                            <TextBlock 
+                                                Text="Tên IP Mạng: ">
+                                            </TextBlock>
+                                            <TextBlock 
+                                                Text="{Binding NameWifi}">
+                                            </TextBlock>
+                                        </WrapPanel>
+                                        <WrapPanel 
+                                            TextBlock.FontSize="16"
+                                            TextBlock.LineHeight="21.48"
+                                            Grid.Row="1">
+                                            <TextBlock 
+                                                Text="Địa chỉ IP: ">
+                                            </TextBlock>
+                                            <TextBlock 
+                                                Text="{Binding AddressIP}">
+                                            </TextBlock>
+                                        </WrapPanel>
+                                    </Grid>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <!--Click-->
+                                        <Border 
+                                            MouseLeftButtonUp="Border_MouseLeftButtonUp_UpdateCollapsed"
+                                            Grid.Column="0"
+                                            Width="24" 
+                                            Height="24">
+                                            <Image 
+                                                Source="./Resource/Image/But.png">
+                                            </Image>
+                                        </Border>
+                                        <Border 
+                                            Width="2"
+                                            Height="28"
+                                            Grid.Column="1">
+                                            <Image 
+                                                Source="./Resource/Image/Vector.png">
+                                            </Image>
+                                        </Border>
+                                        <Border 
+                                            MouseLeftButtonUp="Border_MouseLeftButtonUp_DeleteCollapsed"
+                                            Grid.Column="2"
+                                            Width="24" 
+                                            Height="24">
+                                            <Image 
+                                            Source="./Resource/Image/Recbin.png">
+                                            </Image>
+                                        </Border>
+                                    </Grid>
+                                </DockPanel>
+                                <WrapPanel 
+                                    TextBlock.FontSize="16"
+                                    TextBlock.LineHeight="21.76"
+                                    TextBlock.Foreground="#474747"
+                                    Margin="0 0 0 15"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Bottom"
+                                    Width="240" Height="22">
+                                    <TextBlock 
+                                        Text="Cập nhật: ">
+                                    </TextBlock>
+                                    <TextBlock 
+                                        Text="{Binding UpdateWifi}">
+                                    </TextBlock>
+                                </WrapPanel>
+                                <Rectangle 
+                                    VerticalAlignment="Bottom" 
+                                    Height="1" StrokeDashArray="0.5 1 0.5 1" 
+                                    Stroke="Black" StrokeThickness="10" 
+                                    RadiusX="10" RadiusY="10"/>
+                            </Grid>
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <!--Visibility -->
+        <!--Collapsed-->
+        <!--1.Delete-->
+        <Border 
+           
+            Visibility="Collapsed"
+            x:Name="bodDelete"
+            BorderThickness="1"
+            BorderBrush="Blue"
+            CornerRadius="10 10 10 10"
+            Width="494"
+            Height="212"
+            Margin="0 40 0 0"
+            Background="White">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="2" BlurRadius="20" Opacity="2"></DropShadowEffect>
+            </Border.Effect>
+            <StackPanel>
+                <Border
+                    Margin="0 10 0 10"
+                    Width="50"
+                    Height="50">
+                    <Image Source="./Resource/Image/nox.png"/>
+                </Border>
+                <Border 
+                    Margin="0 10 0 20"
+                    TextBlock.Foreground="#474747"
+                    Width="279"
+                    Height="auto"
+                    TextBlock.FontSize="16"
+                    TextBlock.FontWeight="DemiBold">
+                    <TextBlock 
+                        HorizontalAlignment="Center"
+                        TextWrapping="Wrap"
+                        Text="Hành động xóa không thể phục hồi. Bạn có chắc chắn muốn xóa?" />
+                </Border>
+                <DockPanel 
+                    Width="274"
+                    Height="44">
+                    <Border 
+                        MouseLeftButtonUp="Border_MouseLeftButtonUp_OffDelete"
+                        TextBlock.Foreground="#4C5BD4"
+                        TextBlock.FontWeight="DemiBold"
+                        TextBlock.FontSize="18"
+                        Width="129"
+                        BorderBrush="Blue"
+                        BorderThickness="1"
+                        CornerRadius="15 15 15 15">
+                        <TextBlock 
+                            Text="Hủy"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"/>
+                    </Border>
+                    <Border 
+                         Background="Blue"
+                        Width="129"
+                        TextBlock.Foreground="White"
+                        TextBlock.FontWeight="DemiBold"
+                        TextBlock.FontSize="18"
+                        BorderBrush="Blue"
+                        BorderThickness="1"
+                        CornerRadius="15 15 15 15">
+                        <TextBlock 
+                            Text="Đồng ý"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"/>
+                    </Border>
+
+                </DockPanel>
+            </StackPanel>
+        </Border>
+        <!--2.Update Wifi-->
+        <Border 
+            Visibility="Collapsed"
+            x:Name="bodUpdateWifi"
+            Width="600"
+            Height="313"
+            Margin="0 20 0 0"
+            Background="White"
+            CornerRadius="10 10 10 10"
+            BorderThickness="1"
+            BorderBrush="Blue">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="2" BlurRadius="20" Opacity="2"></DropShadowEffect>
+            </Border.Effect>
+            <StackPanel>
+                <Border 
+                    CornerRadius="10 10 0 0"
+                    Width="600" Height="54"
+                    Background="Blue"
+                    TextBlock.FontSize="20"
+                    TextBlock.LineHeight="23.44"
+                    TextBlock.FontWeight="DemiBold"
+                    TextBlock.Foreground="White">
+                    <TextBlock 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Text="Cập nhật thông tin wifi">
+                    </TextBlock>
+                </Border>
+                <Border 
+                        MouseLeftButtonUp="Border_MouseLeftButtonUp_ExitIp"
+                        Margin="0 -50 15 0"
+                        HorizontalAlignment="Right"
+                        Grid.Row="1"
+                        Width="14"
+                        Height="14">
+                    <Image Source="./Resource/Image/Exit.png"/>
+                </Border>
+                <WrapPanel Height="69" >
+                    <Border 
+                        TextBlock.FontSize="16"
+                        TextBlock.Foreground="#474747"
+                        Margin="20 0 0 0"
+                        Width="auto"
+                        Height="22"
+                        VerticalAlignment="Top">
+                        <TextBlock Text="Tên Wifi *"></TextBlock>
+                    </Border>
+                    <Border   
+                    VerticalAlignment="Bottom"
+                    Margin="20 0 10 0"
+                    Width="560" Height="42"
+                    BorderBrush="#9F9F9F"
+                    BorderThickness="0.5"
+                    CornerRadius="5 5 5 5">
+                        <TextBox 
+                        Height="40"
+                            Width="555"
+                            BorderBrush="White"
+                             BorderThickness="0" 
+                             />
+                    </Border>
+                </WrapPanel>
+
+                <WrapPanel
+                Margin="0 10 0 0"
+                Height="69" >
+                    <Border 
+                        TextBlock.FontSize="16"
+                        TextBlock.Foreground="#474747"
+                        Margin="20 0 0 0"
+                        Width="auto"
+                        Height="22"
+                        VerticalAlignment="Top">
+                        <TextBlock Text="Địa chỉ Mac *"></TextBlock>
+                    </Border>
+                    <Border   
+                    VerticalAlignment="Bottom"
+                    Margin="20 0 10 0"
+                    Width="560" Height="42"
+                    BorderBrush="#9F9F9F"
+                    BorderThickness="0.5"
+                    CornerRadius="5 5 5 5">
+                        <TextBox 
+                        Height="40"
+                            Width="555"
+                            BorderBrush="White"
+                            BorderThickness="0" 
+                             />
+                    </Border>
+                </WrapPanel>
+                <Border
+                TextBlock.Foreground="White"
+                TextBlock.FontWeight="DemiBold"
+                CornerRadius="15 15 15 15"
+                TextBlock.FontSize="18"
+                Background="Blue"
+                Margin="0 30 0 0"
+                Height="44"
+                Width="142">
+                    <TextBlock 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Text="Cập nhật">
+
+                    </TextBlock>
+                </Border>
+            </StackPanel>
+        </Border>
+        <!--3. Create Wifi-->
+        <Border  
+                Visibility="Collapsed"
+                x:Name="BodCreateWifi"
+                Height="313"
+                Width="600"
+                BorderThickness="1"
+                BorderBrush="Blue"
+                Background="White"
+                CornerRadius="10 10 10 10">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="2" BlurRadius="20" Opacity="2"></DropShadowEffect>
+            </Border.Effect>
+            <StackPanel>
+                <Border 
+                    CornerRadius="10 10 0 0"
+                    Width="600" Height="54"
+                    Background="Blue"
+                    TextBlock.FontSize="20"
+                    TextBlock.LineHeight="23.44"
+                    TextBlock.FontWeight="DemiBold"
+                    TextBlock.Foreground="White">
+                    <TextBlock 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Text="Thêm mới wifi">
+                    </TextBlock>
+                </Border>
+                <Border 
+                        MouseLeftButtonUp="Border_MouseLeftButtonUp_ExitIp"
+                        Margin="0 -35 15 0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Grid.Row="1"
+                        Width="14"
+                        Height="14">
+                    <Image Source="./Resource/Image/Exit.png"/>
+                </Border>
+                <WrapPanel Height="69" >
+                    <Border 
+                        TextBlock.FontSize="16"
+                        TextBlock.Foreground="#474747"
+                        Margin="20 0 0 0"
+                        Width="auto"
+                        Height="22"
+                        VerticalAlignment="Top">
+                        <TextBlock Text="Tên Wifi *"></TextBlock>
+                    </Border>
+                    <Border   
+                    VerticalAlignment="Bottom"
+                    Margin="20 0 10 0"
+                    Width="560" Height="42"
+                    BorderBrush="#9F9F9F"
+                    BorderThickness="0.5"
+                    CornerRadius="5 5 5 5">
+                        <TextBox 
+                            Height="40"
+                            Width="555"
+                            BorderBrush="White"
+                            BorderThickness="0"
+                             />
+                    </Border>
+                </WrapPanel>
+
+                <WrapPanel
+                Margin="0 10 0 0"
+                Height="69" >
+                    <Border 
+                        TextBlock.FontSize="16"
+                        TextBlock.Foreground="#474747"
+                        Margin="20 0 0 0"
+                        Width="auto"
+                        Height="22"
+                        VerticalAlignment="Top">
+                        <TextBlock Text="Địa chỉ Mac *"></TextBlock>
+                    </Border>
+                    <Border   
+                    VerticalAlignment="Bottom"
+                    Margin="20 0 10 0"
+                    Width="560" Height="42"
+                    BorderBrush="#9F9F9F"
+                    BorderThickness="0.5"
+                    CornerRadius="5 5 5 5">
+                        <TextBox 
+                        Height="40"
+                            Width="555"
+                            BorderBrush="White"
+                             BorderThickness="0" 
+                             />
+                    </Border>
+                </WrapPanel>
+                <Border
+                TextBlock.Foreground="White"
+                TextBlock.FontWeight="DemiBold"
+                CornerRadius="15 15 15 15"
+                TextBlock.FontSize="18"
+                Background="Blue"
+                Margin="0 30 0 0"
+                Height="44"
+                Width="142">
+                    <TextBlock 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Text="Thêm mới">
+
+                    </TextBlock>
+                </Border>
+            </StackPanel>
+        </Border>
+        <!--4. Create IP-->
+        <Border 
+            x:Name="bodCreateIP"
+            Visibility="Collapsed"
+            Margin="0 30 0 0"
+            Width="600"
+            Height="313"
+            Background="White"
+            CornerRadius="10 10 10 10"
+            BorderThickness="1"
+            BorderBrush="Blue">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="2" BlurRadius="20" Opacity="2"></DropShadowEffect>
+            </Border.Effect>
+            <StackPanel>
+                <Grid>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                    </Grid>
+                    <Border 
+                        Grid.Row="0"
+                        CornerRadius="10 10 0 0"
+                        Width="600" Height="54"
+                        Background="Blue"
+                        TextBlock.FontSize="20"
+                        TextBlock.LineHeight="23.44"
+                        TextBlock.FontWeight="DemiBold"
+                        TextBlock.Foreground="White">
+                        <TextBlock 
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Text="Thêm địa chỉ IP mới">
+                        </TextBlock>
+                    </Border>
+                    <Border 
+                        MouseLeftButtonUp="Border_MouseLeftButtonUp_ExitIp"
+                        Margin="0 0 15 0"
+                        HorizontalAlignment="Right"
+                        Grid.Row="1"
+                        Width="14"
+                        Height="14">
+                        <Image Source="./Resource/Image/Exit.png"/>
+                    </Border>
+                </Grid>
+                <WrapPanel Height="69" >
+                    <Border 
+                        TextBlock.FontSize="16"
+                        TextBlock.Foreground="#474747"
+                        Margin="20 0 0 0"
+                        Width="auto"
+                        Height="22"
+                        VerticalAlignment="Top">
+                        <TextBlock Text="Tên IP Mạng *"></TextBlock>
+                    </Border>
+                    <Border   
+                    VerticalAlignment="Bottom"
+                    Margin="20 0 10 0"
+                    Width="560" Height="42"
+                    BorderBrush="#9F9F9F"
+                    BorderThickness="0.5"
+                    CornerRadius="5 5 5 5">
+                        <TextBox 
+                        Height="40"
+                            Width="555"
+                            BorderBrush="White"/>
+                    </Border>
+                </WrapPanel>
+
+                <WrapPanel
+                Margin="0 10 0 0"
+                Height="69" >
+                    <Border 
+                        TextBlock.FontSize="16"
+                        TextBlock.Foreground="#474747"
+                        Margin="20 0 0 0"
+                        Width="auto"
+                        Height="22"
+                        VerticalAlignment="Top">
+                        <TextBlock Text="Địa chỉ IP mạng dùng điểm danh *"></TextBlock>
+                    </Border>
+                    <Border   
+                    VerticalAlignment="Bottom"
+                    Margin="20 0 10 0"
+                    Width="560" Height="42"
+                    BorderBrush="#9F9F9F"
+                    BorderThickness="0.5"
+                    CornerRadius="5 5 5 5">
+                        <TextBox 
+                        Height="40"
+                            Width="555"
+                            BorderBrush="White"
+                             BorderThickness="0"
+                             />
+                    </Border>
+                </WrapPanel>
+                <Border
+                TextBlock.Foreground="White"
+                TextBlock.FontWeight="DemiBold"
+                CornerRadius="15 15 15 15"
+                TextBlock.FontSize="18"
+                Background="Blue"
+                Margin="0 30 0 0"
+                Height="44"
+                Width="142">
+                    <TextBlock 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Text="Thêm mới">
+
+                    </TextBlock>
+                </Border>
+            </StackPanel>
+        </Border>
+        <!--5. Update IP-->
+        <Border 
+            x:Name="bodUpdateIP"
+            Visibility="Collapsed"
+            Margin="0 30 0 0"
+            Height="313"
+            Width="600"
+            Background="White"
+            CornerRadius="10 10 10 10"
+            BorderThickness="1"
+            BorderBrush="Blue">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="2" BlurRadius="20" Opacity="2"></DropShadowEffect>
+            </Border.Effect>
+            <StackPanel>
+                <Grid>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                    </Grid>
+                    <Border 
+                        Grid.Row="0"
+                        CornerRadius="10 10 0 0"
+                        Width="600" Height="54"
+                        Background="Blue"
+                        TextBlock.FontSize="20"
+                        TextBlock.LineHeight="23.44"
+                        TextBlock.FontWeight="DemiBold"
+                        TextBlock.Foreground="White">
+                        <TextBlock 
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Text="Cập nhật thông tin IP">
+                        </TextBlock>
+                    </Border>
+                    <Border 
+                        MouseLeftButtonUp="Border_MouseLeftButtonUp_ExitIp"
+                        Margin="0 0 15 0"
+                        HorizontalAlignment="Right"
+                        Grid.Row="1"
+                        Width="14"
+                        Height="14">
+                        <Image Source="./Resource/Image/Exit.png"/>
+                    </Border>
+                </Grid>
+                <WrapPanel Height="69" >
+                    <Border 
+                        TextBlock.FontSize="16"
+                        TextBlock.Foreground="#474747"
+                        Margin="20 0 0 0"
+                        Width="auto"
+                        Height="22"
+                        VerticalAlignment="Top">
+                        <TextBlock Text="Tên IP Mạng *"></TextBlock>
+                    </Border>
+                    <Border   
+                    VerticalAlignment="Bottom"
+                    Margin="20 0 10 0"
+                    Width="560" Height="42"
+                    BorderBrush="#9F9F9F"
+                    BorderThickness="0.5"
+                    CornerRadius="5 5 5 5">
+                        <TextBox 
+                        Height="40"
+                            Width="555"
+                            BorderBrush="White"
+                             BorderThickness="0" 
+                             />
+                    </Border>
+                </WrapPanel>
+
+                <WrapPanel
+                Margin="0 10 0 0"
+                Height="69" >
+                    <Border 
+                        TextBlock.FontSize="16"
+                        TextBlock.Foreground="#474747"
+                        Margin="20 0 0 0"
+                        Width="auto"
+                        Height="22"
+                        VerticalAlignment="Top">
+                        <TextBlock Text="Địa chỉ IP mạng dùng điểm danh *"></TextBlock>
+                    </Border>
+                    <Border   
+                    VerticalAlignment="Bottom"
+                    Margin="20 0 10 0"
+                    Width="560" Height="42"
+                    BorderBrush="#9F9F9F"
+                    BorderThickness="0.5"
+                    CornerRadius="5 5 5 5">
+                        <TextBox 
+                        Height="40"
+                            Width="555"
+                            BorderBrush="White"
+                             BorderThickness="0" 
+                             />
+                    </Border>
+                </WrapPanel>
+                <Border
+                TextBlock.Foreground="White"
+                TextBlock.FontWeight="DemiBold"
+                CornerRadius="15 15 15 15"
+                TextBlock.FontSize="18"
+                Background="Blue"
+                Margin="0 30 0 0"
+                Height="44"
+                Width="142">
+                    <TextBlock 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Text="Cập nhật">
+
+                    </TextBlock>
+                </Border>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>
