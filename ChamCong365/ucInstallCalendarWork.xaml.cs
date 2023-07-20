@@ -60,7 +60,6 @@ namespace ChamCong365
             lsvTestSaff.ItemsSource = itemsSaff;
             lsvLich.ItemsSource = itemsLich;
         }
-
         private void lsvListMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             txbSelectMonth.Text = lsvListMonth.SelectedItem.ToString();
