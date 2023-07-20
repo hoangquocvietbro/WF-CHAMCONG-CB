@@ -23,24 +23,39 @@ namespace ChamCong365
         public MainWindow()
         {
             InitializeComponent();
-            ucBodyHome ucbodyhome = new ucBodyHome();
-            //dopFormBody.Children.Clear();
-            object Content = ucbodyhome.Content;
-            ucbodyhome.Content = null;
-            dopBody.Children.Add(Content as UIElement);
-
         }
-      
+        private void buttonCompanyManager_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            companyManagerment uc = new companyManagerment();
+            dopFormBody.Children.Clear();
+            object Content = uc.Content;
+            uc.Content = null;
+            dopFormBody.Children.Add(Content as UIElement);
+        }
+
+        private void wapbuttonSecurityWifi_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            ucSecurityWifi uc = new ucSecurityWifi();
+            dopFormBody.Children.Clear();
+            object Content = uc.Content;
+            uc.Content = null;
+            dopFormBody.Children.Add(Content as UIElement);
+        }
 
         private void bodBackto_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            ucBodyHome ucbodyhome = new ucBodyHome();
-            dopBody.Children.Clear();
-            object Content = ucbodyhome.Content;
-            ucbodyhome.Content = null;
-            dopBody.Children.Add(Content as UIElement);
+
+            dopFormBody.Children.Clear();
+           
         }
 
-        
+        private void wapInstallCalendarWork_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            ucInstallCalendarWork uc = new ucInstallCalendarWork();
+            dopFormBody.Children.Clear();
+            object Content = uc.Content;
+            uc.Content = null;
+            dopFormBody.Children.Add(Content as UIElement);
+        }
     }
 }
